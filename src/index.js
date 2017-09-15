@@ -1,18 +1,26 @@
-import React from 'react'; //Find the library 'react' install as a dependency in node_modules, and assign it to the variable React
+import React, { Component } from 'react'; //Find the library 'react' install as a dependency in node_modules, and assign it to the variable React
 import ReactDOM from 'react-dom'; //To actually render into the dom
-import YTSeach from 'youtube-api-search';
-
+import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
-
 const API_KEY = 'AIzaSyB3ARWf_pG7O6TYHkNbW6VwLP4p0MLiL7o';
 
-//Create a component
-const App = () => { //Create the class App
-  return (
-    <div>
-      <SearchBar /> { /* instance of SearchBar */ }
-    </div>
-  );
+class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = { videos: [] };
+
+    YTSearch({key: API_KEY, term: 'surfboard'}, videos => { //two arguments, an object and a callback function
+      this.setState({ videos }); // the same as this.setState({ videos:videos })
+    });
+  }
+  render() {
+    return (
+      <div>
+        <SearchBar /> { /* instance of SearchBar */ }
+      </div>
+    );
+  }
 }
 
 //Take the component and put it into the page (DOM)

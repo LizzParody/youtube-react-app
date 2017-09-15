@@ -11,7 +11,7 @@ class SearchBar extends Component { //new class called SearchBar and give it acc
     return (
       <div>
         <input
-          value={this.state.term} {/* control flow: The value is set by the state*/}
+          value={this.state.term}
           onChange={ event => this.setState({ term: event.target.value }) }
         />
       </div>
