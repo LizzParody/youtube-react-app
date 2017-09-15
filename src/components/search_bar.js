@@ -10,7 +10,10 @@ class SearchBar extends Component { //new class called SearchBar and give it acc
   render() { //Every class component needs to have a defined render method
     return (
       <div>
-        <input onChange={event => this.setState({ term: event.target.value })}/>
+        <input
+          value={this.state.term} {/* control flow: The value is set by the state*/}
+          onChange={ event => this.setState({ term: event.target.value }) }
+        />
       </div>
     );
   }
