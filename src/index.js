@@ -15,21 +15,26 @@ class App extends Component {
       videos: [],
       selectedVideo: null
     };
+    
+    this.videoSearch('Beyonce');
+  }
 
-    YTSearch({key: API_KEY, term: 'Beyonce'}, (videos) => { //two arguments, an object and a callback function
+  videoSearch(term) { //method to look for specific search
+    YTSearch({key: API_KEY, term: term}, (videos) => { //two arguments, an object and a callback function
       this.setState({
         videos: videos,
         selectedVideo: videos[0]
-      }); // the same as this.setState({ videos: videos })
+      });
     });
   }
+
   render() {
     return (
       <div>
-        <SearchBar /> { /* instance of SearchBar */ }
+        <SearchBar onSearchTermChange={term => this.videoSearch(term)}/> { /* instance of SearchBar */ }
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
-          onVideoSelect={selectedVideo => this.setState({selectedVideo})} // We defined a function that just update app state, we pass it as a property to video_list 
+          onVideoSelect={selectedVideo => this.setState({selectedVideo})} // We defined a function that just update app state, we pass it as a property to video_list
           videos={this.state.videos}/> {/* Passing props to VideoList*/}
       </div>
     );
