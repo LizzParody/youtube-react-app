@@ -3,7 +3,12 @@ import VideoListItem from './video_list_item';
 
 const VideoList = (props) => {
   const videoItems = props.videos.map((video) => { //return an array of videos
-    return <VideoListItem key={video.etag} video={video} />
+    return (
+      <VideoListItem
+      onVideoSelect={props.onVideoSelect} //takes the property from App and pass it to VideoListItem
+      key={video.etag}
+      video={video} />
+    )
   });
 
   return (

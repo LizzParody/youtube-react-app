@@ -11,18 +11,26 @@ class App extends Component {
   constructor(props){
     super(props);
 
-    this.state = { videos: [] };
+    this.state = {
+      videos: [],
+      selectedVideo: null
+    };
 
-    YTSearch({key: API_KEY, term: 'Shakira'}, (videos) => { //two arguments, an object and a callback function
-      this.setState({ videos }); // the same as this.setState({ videos: videos })
+    YTSearch({key: API_KEY, term: 'Beyonce'}, (videos) => { //two arguments, an object and a callback function
+      this.setState({
+        videos: videos,
+        selectedVideo: videos[0]
+      }); // the same as this.setState({ videos: videos })
     });
   }
   render() {
     return (
       <div>
         <SearchBar /> { /* instance of SearchBar */ }
-        <VideoDetail video={this.state.videos[0]}/>
-        <VideoList videos={this.state.videos}/> {/* Passing props*/}
+        <VideoDetail video={this.state.selectedVideo}/>
+        <VideoList
+          onVideoSelect={selectedVideo => this.setState({selectedVideo})} // We defined a function that just update app state, we pass it as a property to video_list 
+          videos={this.state.videos}/> {/* Passing props to VideoList*/}
       </div>
     );
   }
