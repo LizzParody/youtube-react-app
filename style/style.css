@@ -6,7 +6,8 @@
 }
 
 .search-bar input {
-  width: 605px;
+  width: 542px;
+  margin-left: 3px;
 }
 
 .video-item img {
@@ -33,4 +34,16 @@
   font-weight: 900;
   font-family: 'Open Sans';
   letter-spacing: -0.5px;
+}
+
+button {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  width: 60px;
+  background-color: #f8f8f8;
+  border: 1px solid #D3D3D3;
+}
+
+i {
+  color: #828282;
 }

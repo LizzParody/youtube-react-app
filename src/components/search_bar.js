@@ -15,6 +15,7 @@ class SearchBar extends Component { //new class called SearchBar and give it acc
           value={this.state.term}
           onChange={event => this.onInputChange(event.target.value)}
         />
+        <button onClick={() => this.state.videos}><i className="fa fa-search"></i></button>
       </div>
     );
   }
