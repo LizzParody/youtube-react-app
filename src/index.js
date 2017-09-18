@@ -4,6 +4,7 @@ import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
+import _ from 'lodash';
 
 const API_KEY = 'AIzaSyB3ARWf_pG7O6TYHkNbW6VwLP4p0MLiL7o';
 
@@ -15,7 +16,7 @@ class App extends Component {
       videos: [],
       selectedVideo: null
     };
-    
+
     this.videoSearch('Beyonce');
   }
 
@@ -29,9 +30,10 @@ class App extends Component {
   }
 
   render() {
+    const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 300) //created an arrow function and pass it to debounce and returns a new function that can only be called every 300 miliseconds
     return (
       <div>
-        <SearchBar onSearchTermChange={term => this.videoSearch(term)}/> { /* instance of SearchBar */ }
+        <SearchBar onSearchTermChange={videoSearch}/> { /* instance of SearchBar */ }
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
           onVideoSelect={selectedVideo => this.setState({selectedVideo})} // We defined a function that just update app state, we pass it as a property to video_list
