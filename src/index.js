@@ -1,7 +1,7 @@
 import React, { Component } from 'react'; //Find the library 'react' install as a dependency in node_modules, and assign it to the variable React
 import ReactDOM from 'react-dom'; //To actually render into the dom
 import YTSearch from 'youtube-api-search';
-import SearchBar from './components/search_bar';
+import SearchBar from './components/search_bar'; //We need to explicity write the path
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
 import _ from 'lodash';
@@ -44,4 +44,6 @@ class App extends Component {
 }
 
 //Take the component and put it into the page (DOM)
-ReactDOM.render(<App />, document.querySelector('.container')); //Get the div with the class container and put the app component into that div
+/* App is a class, we get need to get the instance of app, to do this we use <App />
+Get the div with the class container and put the app component into that div */
+ReactDOM.render(<App />, document.querySelector('.container'));
