@@ -1,7 +1,7 @@
 import React from "react";
 
 const VideoDetail = ({video}) => {
-  if (!video) {
+  if (!video) { //to check that the video array is not empty before rendering the component
     return <div>Loading...</div>
   }
 

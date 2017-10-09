@@ -1,6 +1,6 @@
 import React, { Component } from 'react'; //Find the library 'react' install as a dependency in node_modules, and assign it to the variable React
 import ReactDOM from 'react-dom'; //To actually render into the dom
-import YTSearch from 'youtube-api-search';
+import YTSearch from 'youtube-api-search'; //import the npm package we installed
 import SearchBar from './components/search_bar'; //We need to explicity write the path
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
@@ -22,7 +22,8 @@ class App extends Component {
 
   videoSearch(term) { //method to look for specific search
     YTSearch({key: API_KEY, term: term}, (videos) => { //two arguments, an object and a callback function
-      this.setState({
+      console.log(videos)
+      this.setState({ //This is so to have some initial data
         videos: videos,
         selectedVideo: videos[0]
       });
@@ -34,10 +35,10 @@ class App extends Component {
     return (
       <div>
         <SearchBar onSearchTermChange={videoSearch}/> { /* instance of SearchBar */ }
-        <VideoDetail video={this.state.selectedVideo}/>
+        <VideoDetail video={this.state.selectedVideo}/> { /* passing props to VideoDetail */ }
         <VideoList
-          onVideoSelect={selectedVideo => this.setState({selectedVideo})} // We defined a function that just update app state, we pass it as a property to video_list
-          videos={this.state.videos}/> {/* Passing props to VideoList*/}
+          onVideoSelect={selectedVideo => this.setState({selectedVideo})} // We defined a function that just update app state, we pass it as a property to VideoList
+          videos={this.state.videos}/> {/* Passing props to VideoList, data from the parent component to the child component */}
       </div>
     );
   }
