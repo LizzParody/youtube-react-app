@@ -7,7 +7,7 @@ const VideoList = (props) => {
       <VideoListItem
       onVideoSelect={props.onVideoSelect} //takes the property from App and pass it to VideoListItem
       key={video1.etag} // identifier of each video so when you want to change one specific video you can do it
-      video={video1} /> //passing this as a property of VideoListItem
+      video2={video1} /> //passing this as a property of VideoListItem
     )
   });
 
